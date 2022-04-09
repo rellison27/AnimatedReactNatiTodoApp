@@ -11,6 +11,7 @@ import {
 } from 'native-base'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import ThemeToggle from './ThemeToggle'
+import TaskItem from './TaskItem'
 
 export default function MainScreen() {
 
@@ -29,15 +30,7 @@ export default function MainScreen() {
           <Text>Hello</Text>
         </Box>
         <ThemeToggle />
-        <BouncyCheckbox
-          size={25}
-          fillColor={useColorModeValue('#FF0000', '#FFDB58')}
-          unfillColor="#FFFFFF"
-          text="Custom Checkbox"
-          iconStyle={{ borderColor: useColorModeValue('#FF0000', '#FFDB58') }}
-          textStyle={{ fontFamily: 'JosefinSans-Regular' }}
-          onPress={handleIsChecked}
-        />
+        <TaskItem />
       </VStack>
     </Center>
   )
