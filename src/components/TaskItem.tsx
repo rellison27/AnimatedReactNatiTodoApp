@@ -4,9 +4,13 @@ import { Box, useColorModeValue, useColorMode, themeTools } from "native-base";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useTheme } from "@react-navigation/native";
 
+interface Props {
+    taskLabel: string
+}
 
-const TaskItem = () => {
-  const theme = useTheme()
+const TaskItem = (props: Props) => {
+  const {taskLabel} = props
+    const theme = useTheme()
   const highlightColor = themeTools.getColor(
     theme,
     useColorModeValue('blue.500', 'blue.400'),
@@ -27,7 +31,7 @@ const TaskItem = () => {
         size={25}
         fillColor={useColorModeValue('#FF0000', '#FFDB58')}
         unfillColor="#FFFFFF"
-        text="Custom Checkbox"
+        text={taskLabel}
         iconStyle={{ borderColor: useColorModeValue('#FF0000', '#FFDB58') }}
         textStyle={{ fontFamily: 'JosefinSans-Regular' }}
         onPress={handleIsChecked}
