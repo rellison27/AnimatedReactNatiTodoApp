@@ -9,14 +9,11 @@ import {
   useColorMode,
   useColorModeValue,
 } from 'native-base'
-import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import ThemeToggle from './ThemeToggle'
 import TaskItem from './TaskItem'
 
 export default function MainScreen() {
 
-  const [isChecked, setIsChecked] = useState<boolean>(false)
-  const handleIsChecked = () => setIsChecked(!isChecked)
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Center
@@ -30,7 +27,7 @@ export default function MainScreen() {
           <Text>Hello</Text>
         </Box>
         <ThemeToggle />
-        <TaskItem />
+        <TaskItem taskLabel="Example label" />
       </VStack>
     </Center>
   )
