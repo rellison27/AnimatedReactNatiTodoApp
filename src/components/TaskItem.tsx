@@ -26,7 +26,7 @@ const TaskItem = (props: Props) => {
   const handleIsChecked = () => setIsChecked(!isChecked)
 
   return (
-    <Box width={30} height={30} mr={2}>
+    <Box height={30} mr={2}>
       <BouncyCheckbox
         size={25}
         fillColor={useColorModeValue('#FF0000', '#FFDB58')}
