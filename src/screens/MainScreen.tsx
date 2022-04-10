@@ -9,8 +9,8 @@ import {
   useColorMode,
   useColorModeValue,
 } from 'native-base'
-import ThemeToggle from './ThemeToggle'
-import TaskItem from './TaskItem'
+import ThemeToggle from '../components/ThemeToggle'
+import TaskItem from '../components/TaskItem'
 
 export default function MainScreen() {
 
