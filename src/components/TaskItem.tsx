@@ -46,11 +46,9 @@ const TaskItem = (props: Props) => {
  const renderRightActions = () => (
     <Box
           bg="red.500"
-          w="full"
-          h="full"
           justifyContent="center"
           alignItems="flex-end"
-          pr={4}
+          p={4}
         >
           <Icon as={<Feather name="trash-2"/>} size="sm" color="white" />
         </Box>
@@ -58,7 +56,7 @@ const TaskItem = (props: Props) => {
   return (
     <Swipeable
       friction={1}
-      leftThreshold={30}
+      rightThreshold={-75}
       renderRightActions={(progress, dragX) => renderRightActions()}
     >
         <HStack 
@@ -66,7 +64,7 @@ const TaskItem = (props: Props) => {
           px={4}
           py={2} 
           w="full"
-          bg={useColorModeValue('warmGray.50', 'primary.900')}>
+          bg={useColorModeValue('warmGray.50', 'blueGray.900')}>
       <Box mr={2}>
           <BouncyCheckbox
             size={25}
