@@ -18,23 +18,23 @@ import { Feather } from "@expo/vector-icons";
 import { PanGestureHandlerProps } from "react-native-gesture-handler";
 
 interface Props extends Pick<PanGestureHandlerProps, 'simultaneousHandlers'> {
-    taskLabel: string
+    label: string
     isChecked?: boolean
     onPressLabel?: () => void
     onRemove?: () => void
     isEditing: boolean
-    onChangeTaskLabel: (taskLabel: string) => void
-    onEndEditingTaskLabel: () => void
+    onChangeTodoLabel: (todoLabel: string) => void
+    onEndEditingTodoLabel: () => void
 }
 
-const TaskItem = (props: Props) => {
+const TodoItem = (props: Props) => {
   const { 
-    taskLabel,
+    label,
     onPressLabel,
     onRemove,
     isEditing,
-    onChangeTaskLabel,
-    onEndEditingTaskLabel,
+    onChangeTodoLabel,
+    onEndEditingTodoLabel,
    } = props
   const theme = useTheme()
   const highlightColor = themeTools.getColor(
@@ -49,9 +49,9 @@ const TaskItem = (props: Props) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const handleIsChecked = () => setIsChecked(!isChecked)
-  const handlehangeTaskLabel = useCallback((e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-    onChangeTaskLabel && onChangeTaskLabel(e.nativeEvent.text)
-  }, [onChangeTaskLabel])
+  const handleChangeTodoLabel = useCallback((e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    onChangeTodoLabel && onChangeTodoLabel(e.nativeEvent.text)
+  }, [onChangeTodoLabel])
 
   const renderRightActions = () => (
     <Box
@@ -59,7 +59,7 @@ const TaskItem = (props: Props) => {
       justifyContent="center"
       alignItems="flex-end"
       p={4}>
-      <Icon as={<Feather name="trash-2"/>} size="sm" color="white" />
+      <Icon as={<Feather name="trash-2"/>} size="sm" color="white" onPress={onRemove} />
     </Box>
  )
   return (
@@ -86,15 +86,15 @@ const TaskItem = (props: Props) => {
               ? 
                 <Input 
                   placeholder="Example label" 
-                  value={taskLabel} 
+                  value={label} 
                   variant="unstyled"
-                  onChange={handlehangeTaskLabel}
+                  onChange={handleChangeTodoLabel}
                   fontSize={20}
                   px={2}
                   py={0}
                   autoFocus
                   bluronSubmit
-                  onBlur={onEndEditingTaskLabel}
+                  onBlur={onEndEditingTodoLabel}
                   />
               :
                 <Text
@@ -106,7 +106,7 @@ const TaskItem = (props: Props) => {
                   textDecorationLine={isChecked ? 'line-through' : 'none'}
                   textDecorationColor={isChecked ? 'gray.400' : activeTextColor}
                   >
-                  {taskLabel}
+                  {label}
                 </Text>              
             }
         {/* </Box> */}
@@ -115,4 +115,4 @@ const TaskItem = (props: Props) => {
   )
 }
 
-export default TaskItem
+export default TodoItem

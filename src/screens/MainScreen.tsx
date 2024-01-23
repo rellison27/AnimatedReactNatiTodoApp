@@ -16,7 +16,7 @@ import TodoItem from '../components/TodoItem'
 export default function MainScreen() {
 
   const { colorMode, toggleColorMode } = useColorMode()
-  const [taskLabel, setTaskLabel] = useState<string>('Example Label')
+  const [todoLabel, setTodoLabel] = useState<string>('Example Label')
   const [isEditing, setIsEditing] = useState<boolean>(false)
 
   return (
@@ -27,11 +27,11 @@ export default function MainScreen() {
     >
       <VStack space={5} alignItems="center" w="full" >
         <TodoItem 
-          taskLabel={taskLabel}
+          label={todoLabel}
           isEditing={isEditing}
-          onChangeTaskLabel={setTaskLabel}
+          onChangeTodoLabel={setTodoLabel}
           onPressLabel={() => setIsEditing(true)}
-          onEndEditingTaskLabel={() => setIsEditing(false)}
+          onEndEditingTodoLabel={() => setIsEditing(false)}
           />
         <ThemeToggle />
       </VStack>
