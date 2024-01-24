@@ -85,7 +85,7 @@ const TodoItem = (props: Props) => {
             {isEditing
               ? 
                 <Input 
-                  placeholder="Example label" 
+                  placeholder="What do you need to do?" 
                   value={label} 
                   variant="unstyled"
                   onChange={handleChangeTodoLabel}
