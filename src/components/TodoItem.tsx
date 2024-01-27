@@ -9,7 +9,6 @@ import {
   HStack,
   Input,
   Text,
-  Checkbox
  } from "native-base";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useTheme } from "@react-navigation/native";
@@ -46,6 +45,7 @@ const TodoItem = (props: Props) => {
     useColorModeValue('darkText', 'lightText'),
   )
 
+  const colors = useTheme().colors
   const { colorMode, toggleColorMode } = useColorMode()
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const handleIsChecked = () => setIsChecked(!isChecked)
@@ -71,15 +71,14 @@ const TodoItem = (props: Props) => {
       <HStack 
         alignItems="center" 
         px={4}
-        py={2} 
+        py={4} 
         w="full"
-        bg={useColorModeValue('warmGray.50', 'blueGray.900')}>
-        {/* <Box mr={2}> */}
+        bg={colors.background}>
             <BouncyCheckbox
               size={25}
-              fillColor={useColorModeValue('#FF0000', '#FFDB58')}
+              fillColor={colors.primary}
               unfillColor="#FFFFFF"
-              iconStyle={{ borderColor: useColorModeValue('#FF0000', '#FFDB58') }}
+              iconStyle={{ borderColor: colors.border }}
               onPress={handleIsChecked}
               />
             {isEditing
@@ -87,6 +86,7 @@ const TodoItem = (props: Props) => {
                 <Input 
                   placeholder="What do you need to do?" 
                   value={label} 
+                  color={colors.text}
                   variant="unstyled"
                   onChange={handleChangeTodoLabel}
                   fontSize={20}
@@ -102,14 +102,13 @@ const TodoItem = (props: Props) => {
                   px={2}
                   py={0}
                   onPress={onPressLabel}
-                  color={isChecked ? 'gray.400' : activeTextColor}
+                  color={isChecked ? 'gray.400' : colors.text}
                   textDecorationLine={isChecked ? 'line-through' : 'none'}
-                  textDecorationColor={isChecked ? 'gray.400' : activeTextColor}
+                  textDecorationColor={isChecked ? 'gray.400' : colors.text}
                   >
                   {label}
                 </Text>              
             }
-        {/* </Box> */}
       </HStack>
     </Swipeable>
   )

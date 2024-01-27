@@ -2,14 +2,14 @@ import React from "react";
 import {Box, Text, VStack} from 'native-base'
 
 
-const AboutScreen = () => {
+const CompletedScreen = () => {
     return (
         <VStack flex={1}>
             <Box>
-                <Text>About</Text>
+                <Text>Completed</Text>
             </Box>
         </VStack>
     )
 }
 
-export default AboutScreen
+export default CompletedScreen

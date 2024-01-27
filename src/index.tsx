@@ -1,16 +1,15 @@
 import React from 'react'
-import { registerRootComponent } from 'expo'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import MainScreen from './screens/MainScreen'
-import AboutScreen from './screens/AboutScreen'
+import CompletedScreen from './screens/CompletedScreen'
 
 const Drawer = createDrawerNavigator()
 
 const App = () => {
   return (
     <Drawer.Navigator initialRouteName="Main">
-      <Drawer.Screen name="Main" component={MainScreen} />
-      <Drawer.Screen name="About" component={AboutScreen} />
+      <Drawer.Screen name="To-do's" component={MainScreen} />
+      <Drawer.Screen name="Completed" component={CompletedScreen} />
     </Drawer.Navigator>
   )
 }

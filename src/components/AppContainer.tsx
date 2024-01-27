@@ -1,16 +1,18 @@
 import * as React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
 import { NativeBaseProvider } from 'native-base'
-import theme from './theme'
+import { useColorScheme } from 'react-native';
 
 type Props = {
   children: React.ReactNode
 }
 
 export default function AppContainer(props: Props) {
+  const scheme = useColorScheme()
+
   return (
-    <NavigationContainer>
-      <NativeBaseProvider theme={theme}>{props.children}</NativeBaseProvider>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <NativeBaseProvider >{props.children}</NativeBaseProvider>
     </NavigationContainer>
   )
 }

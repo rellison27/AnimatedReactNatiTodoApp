@@ -1,20 +1,13 @@
 import React, {useState, useCallback} from 'react'
 import {
-  Text,
-  Box,
   Center,
-  VStack,
-  themeTools,
-  useTheme,
-  useColorMode,
   useColorModeValue,
   Icon,
 } from 'native-base'
+import { useTheme } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'
-import ThemeToggle from '../components/ThemeToggle'
-import { StyleSheet, View, Pressable } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Fab } from 'native-base'
-import TodoItem from '../components/TodoItem'
 import TodoList from '../components/TodoList'
 import shortid from 'shortid'
 
@@ -34,9 +27,6 @@ const initialTodos = [
 export default function MainScreen() {
   const [todos, setTodos] = useState(initialTodos)
   const [editingItemId, setEditingItemId] = useState<string | null>(null)
-  const { colorMode, toggleColorMode } = useColorMode()
-  const [todoLabel, setTodoLabel] = useState<string>('Example Label')
-  const [isEditing, setIsEditing] = useState<boolean>(false)
 
   const handleChangeTodoItemLabel = useCallback((todo, newLabel) => {
     setTodos(prevData => {
@@ -79,13 +69,14 @@ export default function MainScreen() {
     setEditingItemId(id)
   }
 
+  const colors = useTheme().colors
+
   return (
     <Center
-      _dark={{ bg: 'blueGray.900' }}
-      _light={{ bg: 'blueGray.50' }}
+      _dark={{ bg: colors.background }}
+      _light={{ bg: colors.background }}
       flex={1}
     >
-      <VStack space={5} alignItems="center" w="full" >
         <TodoList 
           todos={todos}
           editingItemId={editingItemId}
@@ -95,14 +86,12 @@ export default function MainScreen() {
           onRemoveTodo={handleRemoveTodo}
           onPressLabel={handlePressTodoLabel}
         />
-        <ThemeToggle />
         
-      </VStack>
       <Fab 
         position="absolute"
         renderInPortal={false} 
         size="sm"
-        colorScheme={useColorModeValue('blue', 'darkBlue')}
+        colorScheme={colors.primary}
         bg={useColorModeValue('blue.500', 'blue.400')}
         icon={<Icon color="white" as={<AntDesign name='plus' />} size="sm"/>}
         onPress={handleAddNewTodo}
